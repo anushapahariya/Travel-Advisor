@@ -49,7 +49,6 @@ const Map = ({setCoordinates, setBounds, coordinates, places, setChildClicked}) 
                                 </Paper>
                             )
                         }
-
                     </div>
            ))}
             </GoogleMapReact>

@@ -12,9 +12,8 @@ const List = ({places, childClicked, isLoading}) =>
     const [rating, setRating]=useState('');
     const [elRefs, setElRefs]=useState();
 
-    useEffect(() =>{
-       const refs = Array(places?.length).fill().map((_,i) => refs[i] || createRef());
-       
+    useEffect(() => {
+       const refs = Array(places?.length).fill().map((_, i) => elRefs[i] || createRef());      
        setElRefs(refs);
       }, [places]);
 
@@ -33,7 +32,7 @@ const List = ({places, childClicked, isLoading}) =>
              <Select value={type} onChange={(e) => setType(e.target.value)}>
                 <MenuItem value="restaurants">Restaurants</MenuItem>
                 <MenuItem value="hotels">Hotels</MenuItem>
-                <MenuItem value="attractions">Attractions</MenuItem>
+                 <MenuItem value="attractions">Attractions</MenuItem>
              </Select>
           </FormControl>
           <FormControl className={classes.formControl} >
@@ -47,9 +46,13 @@ const List = ({places, childClicked, isLoading}) =>
           </FormControl>
           <Grid container spacing={3} className={classes.list}>
             {places?.map((place,i)  => (
-               <Grid item key={i} xs={12}>
-                 <PlaceDetails selected={Number(childClicked) === i} refProp={elRefs[i]} place={place} /> 
-                  </Grid>
+               <Grid ref={elRefs[i]} item key={i} xs={12}>
+                 <PlaceDetails 
+                 place={place}
+                 selected={Number(childClicked) === i}
+                 refProp={elRefs[i]} 
+                />
+                </Grid>
             ))}
           </Grid>
           </>

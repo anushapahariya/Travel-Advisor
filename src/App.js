@@ -23,7 +23,6 @@ const App = () =>
 
      useEffect(() => {
       setIsLoading(true);
-
        if (bounds){
         getPlacesData(bounds.sw, bounds.ne)
         .then((data) => {
